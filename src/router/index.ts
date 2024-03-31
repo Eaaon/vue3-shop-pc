@@ -3,19 +3,19 @@ import { RouterView, createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // {
-    //   path: '/',
-    //   redirect: '/home',
-    // },
-    // {
-    //   path: '/home',
-    //   name: 'Home',
-    //   component: () => import('@/views/home/index.vue'),
-    //   meta: {
-    //     title: '首页',
-    //     showWindowBar: true,
-    //   },
-    // },
+    {
+      path: '/',
+      redirect: '/home',
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      component: () => import('@/views/home/index.vue'),
+      meta: {
+        title: '首页',
+        showWindowBar: true,
+      },
+    },
     // {
     //   path: '/401',
     //   component: () => import('@/views/error/401.vue'),

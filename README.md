@@ -140,6 +140,7 @@ pnpm add axios
 pnpm add mockjs
 
 pnpm add pinia
+pnpm add pinia-plugin-persistedstate
 pnpm add vue-router
 pnpm add element-plus
 
