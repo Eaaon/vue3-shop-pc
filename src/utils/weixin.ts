@@ -1,10 +1,10 @@
 import request from '@/utils/request'
-import { showToast } from 'vant'
+import { ElMessage } from 'element-plus'
 
-import wx from "weixin-js-sdk"
+import wx from 'weixin-js-sdk'
 
-let first_url = window.location.href.split('#')[0]
-let url_signed = new Map()
+const first_url = window.location.href.split('#')[0]
+const url_signed = new Map()
 
 const initApiList = [
   'checkJsApi',
@@ -39,7 +39,7 @@ async function sign_url() {
   }
 
   // if(last_url == _url) return
-  let params = {
+  const params = {
     url: _url,
     channel: 'Dental5Customer' //sessionStorage.getItem("channel")
   }
@@ -47,12 +47,11 @@ async function sign_url() {
   let sign = url_signed.get(_url)
 
   if (!sign || sign.expire < Date.now()) {
-
     sign = await request({
       url: `/userapi/clouds/weixin/sign/query`,
       method: 'get',
       params
-    }) 
+    })
 
     if (sign) {
       sign.expire = Date.now() + 7000000 //7000秒
@@ -62,19 +61,16 @@ async function sign_url() {
     }
   }
 
-
   wx.config({
     appId: sign.appId,
     timestamp: sign.signTimestamp,
     nonceStr: sign.signRandomString,
     signature: sign.weixinSignature,
     jsApiList: initApiList
+  })
 
-  });
-
-  let ready = await wxready()
+  const ready = await wxready()
   return ready
-
 }
 
 function wxready() {
@@ -85,30 +81,31 @@ function wxready() {
   })
 }
 
-
 //判断是否IOS环境
 function isIphone() {
-  let u = navigator.userAgent;
-  let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);     //判断是否是 iOS终端
+  const u = navigator.userAgent
+  const isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) //判断是否是 iOS终端
   return isIOS
 }
-
 
 function chooseImage(count = 9) {
   return new Promise(function (resove, reject) {
     wx.ready(function () {
       wx.chooseImage({
         count: count, // 默认9
-        sizeType: ["original"],
+        sizeType: ['original'],
         // sizeType: ["compressed"], // 可以指定是原图还是压缩图，默认二者都有
-        sourceType: ["album", "camera"], // 可以指定来源是相册还是相机，默认二者都有
+        sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
         success: (res: any) => {
           resove(res.localIds) // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
         },
         fail: (res: any) => {
-          showToast("图片选择失败，请刷新页面重试");
+          ElMessage({
+            message: '图片选择失败，请刷新页面重试',
+            type: 'error'
+          })
         }
-      });
+      })
     })
   })
 }
@@ -120,7 +117,7 @@ function getImageData(id: string | number) {
         localId: id, // 图片的localID
         success: (res: any) => {
           let data = res.localData
-          if (data.indexOf("data:image") != 0) {
+          if (data.indexOf('data:image') != 0) {
             data = 'data:image/jpeg;base64,' + data
           }
           data = data.replace(/\r|\n/g, '')
@@ -136,7 +133,7 @@ function previewImage(url: string, list: any) {
     wx.previewImage({
       current: url, // 当前显示图片的http链接
       urls: list // 需要预览的图片http链接列表
-    });
+    })
   })
 }
 
@@ -144,8 +141,8 @@ function getLocation() {
   wx.getLocation({
     // type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
     success: (res: any) => {
-      sessionStorage.setItem("LBSLongitude", res.longitude);
-      sessionStorage.setItem("LBSLatitude", res.latitude);
+      sessionStorage.setItem('LBSLongitude', res.longitude)
+      sessionStorage.setItem('LBSLatitude', res.latitude)
       // let latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
       // let longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
       // let speed = res.speed; // 速度，以米/每秒计
@@ -154,35 +151,33 @@ function getLocation() {
   })
 }
 
-
-let chooseBase64Image = async function (count: number) {
-  let base64_images = []
-  let ids: any = await chooseImage(count);
+const chooseBase64Image = async function (count: number) {
+  const base64_images = []
+  const ids: any = await chooseImage(count)
   for (const id of ids) {
-    let base64 = await getImageData(id);
+    const base64 = await getImageData(id)
     base64_images.push(base64)
   }
   return base64_images
 }
 
-let checkLogin = async function () {
-  let data = await request({
+const checkLogin = async function () {
+  const data = await request({
     url: `/userapi/my/weixin/info`,
     method: 'get',
-    params:{
+    params: {
       channel: 'Dental5Customer'
     }
   })
-    
-  if (data && data.userPhone && data.userPhone != '' && data.userPhone != "") {
+
+  if (data && data.userPhone && data.userPhone != '' && data.userPhone != '') {
     return true
   } else {
-    return false;
+    return false
   }
-
 }
 
-let shareMessage = function (options: any) {
+const shareMessage = function (options: any) {
   wx.showOptionMenu()
   wx.updateTimelineShareData(options)
   wx.updateAppMessageShareData(options)

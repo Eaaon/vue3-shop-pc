@@ -1,11 +1,11 @@
-import { RouterView, createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      redirect: '/home',
+      redirect: '/home'
     },
     {
       path: '/home',
@@ -13,8 +13,8 @@ const router = createRouter({
       component: () => import('@/views/home/index.vue'),
       meta: {
         title: '首页',
-        showWindowBar: true,
-      },
+        showWindowBar: true
+      }
     },
     // {
     //   path: '/401',
@@ -33,7 +33,7 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       name: 'others',
-      redirect: '/404',
+      redirect: '/404'
     }
   ],
   scrollBehavior: () => ({ left: 0, top: 0 })
@@ -41,7 +41,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   console.log(to, from)
-  next();
+  next()
 })
 
 router.afterEach((to, from) => {

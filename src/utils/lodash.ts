@@ -4,19 +4,19 @@
  * @param {number} interval 时间间隔的阈值
  */
 export function throttle(fn: any, interval: number) {
-  let last = 0;
+  let last = 0
   return function () {
     // @ts-ignore
     // eslint-disable-next-line
     const context = this;
-    const args = arguments;
-    const now = Number(new Date());
+    const args = arguments
+    const now = Number(new Date())
 
     if (now - last >= interval) {
-      last = now;
-      fn.apply(context, args);
+      last = now
+      fn.apply(context, args)
     }
-  };
+  }
 }
 
 /**
@@ -25,26 +25,26 @@ export function throttle(fn: any, interval: number) {
  * @param {number} delay 每次推迟执行的等待时间
  */
 export function debounce(fn: any, delay: number) {
-  let last = 0;
-  let timer: any = null;
+  let last = 0
+  let timer: any = null
   return function () {
     // @ts-ignore
     // eslint-disable-next-line
     const context = this;
-    const args = arguments;
-    const now = Number(new Date());
+    const args = arguments
+    const now = Number(new Date())
 
     if (now - last < delay) {
-      clearTimeout(timer);
+      clearTimeout(timer)
       timer = setTimeout(() => {
-        last = now;
-        fn.apply(context, args);
-      }, delay);
+        last = now
+        fn.apply(context, args)
+      }, delay)
     } else {
-      last = now;
-      fn.apply(context, args);
+      last = now
+      fn.apply(context, args)
     }
-  };
+  }
 }
 
 /**
@@ -53,13 +53,13 @@ export function debounce(fn: any, delay: number) {
  * @returns 拷贝后的新对象
  */
 export function deepClone<T = any>(source: {}): T {
-  const target: any = Array.isArray(source) ? [] : {};
+  const target: any = Array.isArray(source) ? [] : {}
   // eslint-disable-next-line guard-for-in
   for (const key in source) {
-    target[key] = source[key] !== null && typeof source[key] === 'object' ? deepClone(source[key]) : source[key];
+    target[key] = source[key] !== null && typeof source[key] === 'object' ? deepClone(source[key]) : source[key]
   }
 
-  return target;
+  return target
 }
 
 /**
@@ -72,8 +72,8 @@ export function deepClone<T = any>(source: {}): T {
  * ```
  */
 export const randomIntegerInRange = function (m: number, n: number) {
-  return m + Math.floor(Math.random() * (n - m));
-};
+  return m + Math.floor(Math.random() * (n - m))
+}
 
 /**
  * 转换驼峰拼写的字符串为特定格式
@@ -83,7 +83,7 @@ export function fromCamelCase(str: string, separator = '_') {
   return str
     .replace(/([a-z\d])([A-Z])/g, '$1' + separator + '$2')
     .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + separator + '$2')
-    .toLowerCase();
+    .toLowerCase()
 }
 
 /**
@@ -92,9 +92,9 @@ export function fromCamelCase(str: string, separator = '_') {
 export function mapMatchingProperties(target: {}, source: {}) {
   Object.keys(target).forEach((key) => {
     if (key in source) {
-      target[key] = source[key];
+      target[key] = source[key]
     }
-  });
+  })
 
-  return target;
+  return target
 }

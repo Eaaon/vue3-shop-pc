@@ -1,20 +1,20 @@
 import axios from 'axios'
-import { showToast } from 'vant'
+import { ElMessage } from 'element-plus'
 
-let token = sessionStorage.getItem("token");
+const token = sessionStorage.getItem('token')
 export const request = async (options: any) => {
   if (import.meta.env.VITE_USE_MOCK) {
-    let res = await axios({
+    const res = await axios({
       method: options.method,
       url: options.url,
       params: options.params || options.data
-    });
+    })
     return res.data
   } else {
     return new Promise((resolve, reject) => {
       const service = axios.create({
         baseURL: import.meta.env.VITE_BASE_URL, // url = base url + request url
-        timeout: 5000, // request timeout
+        timeout: 5000 // request timeout
       })
 
       // 请求拦截
@@ -25,7 +25,7 @@ export const request = async (options: any) => {
           }
           return config
         },
-        error => {
+        (error) => {
           return Promise.reject(error)
         }
       )
@@ -36,20 +36,29 @@ export const request = async (options: any) => {
           const res = response.data
           const status = response.status
           if (status !== 200) {
-            const desc = res.code || "出错了!"
-            showToast(desc)
+            const desc = res.code || '出错了!'
+            ElMessage({
+              message: desc,
+              type: 'error'
+            })
             return Promise.reject(new Error(res.code || 'Error'))
           } else {
-            if (res.code === "000000") {
+            if (res.code === '000000') {
               return res.data
             } else {
-              const desc = res.code || "出错了!"
-              showToast(desc)
+              const desc = res.code || '出错了!'
+              ElMessage({
+                message: desc,
+                type: 'error'
+              })
             }
           }
         },
-        error => {
-          showToast('出错了!')
+        (error) => {
+          ElMessage({
+            message: '出错了!',
+            type: 'error'
+          })
           return Promise.reject(error || new Error('request error!'))
         }
       )
@@ -65,6 +74,5 @@ export const request = async (options: any) => {
     })
   }
 }
-
 
 export default request

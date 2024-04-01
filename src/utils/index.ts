@@ -18,12 +18,12 @@ export function getAssetURL(name: string) {
  * ```
  */
 export function getQueryString(key: string, url: string) {
-  const reg = new RegExp(`([?&]+)${key}=([^&#]*)`);
-  const href = url || window.location.href;
-  const results = href.substring(1).match(reg);
+  const reg = new RegExp(`([?&]+)${key}=([^&#]*)`)
+  const href = url || window.location.href
+  const results = href.substring(1).match(reg)
 
-  if (!results) return null;
-  if (!results[2]) return '';
+  if (!results) return null
+  if (!results[2]) return ''
 
-  return decodeURIComponent(results[2]);
+  return decodeURIComponent(results[2])
 }

@@ -1,5 +1,5 @@
 // uno.config.ts
-import { defineConfig, presetAttributify, presetWebFonts,presetUno } from 'unocss'
+import { defineConfig, presetAttributify, presetWebFonts, presetUno } from 'unocss'
 
 export default defineConfig({
   // ...UnoCSS选项
@@ -44,8 +44,7 @@ export default defineConfig({
       // ...
     }
   },
-  rules: [
-  ],
+  rules: [],
   presets: [
     presetWebFonts({
       fonts: {
@@ -53,6 +52,6 @@ export default defineConfig({
       }
     }),
     presetAttributify(),
-    presetUno(),
+    presetUno()
   ]
 })
