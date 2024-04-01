@@ -15,6 +15,7 @@
     "format": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\""
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
     "echarts": "^5.5.0",
@@ -26,6 +27,7 @@
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "vue": "^3.4.21",
+    "vue-i18n": "^9.10.2",
     "vue-router": "^4.3.0",
     "xlsx": "^0.18.5"
   },

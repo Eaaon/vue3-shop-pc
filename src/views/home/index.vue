@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import request from '@/utils/http'
+import { onMounted } from 'vue'
 
 const bannerListApi = (params: any) => {
   return request({
@@ -8,6 +9,10 @@ const bannerListApi = (params: any) => {
     params
   })
 }
+
+onMounted(() => {
+  bannerListApi({})
+})
 </script>
 
 <template>home1</template>

@@ -4,6 +4,15 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/login',
+      name: 'Login',
+      component: () => import('@/views/login/index.vue'),
+      meta: {
+        title: '登录',
+        showWindowBar: true
+      }
+    },
+    {
       path: '/',
       redirect: '/home'
     },
@@ -23,13 +32,13 @@ const router = createRouter({
     //     title: '401',
     //   }
     // },
-    // {
-    //   path: '/404',
-    //   component: () => import('@/views/error/404.vue'),
-    //   meta: {
-    //     title: '404',
-    //   }
-    // },
+    {
+      path: '/404',
+      component: () => import('@/views/error/404.vue'),
+      meta: {
+        title: '404'
+      }
+    },
     {
       path: '/:pathMatch(.*)*',
       name: 'others',
