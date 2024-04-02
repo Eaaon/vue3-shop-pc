@@ -1,12 +1,13 @@
 <script setup lang="ts">
-// import { useI18n } from 'vue-i18n'
+import { useI18n } from 'vue-i18n'
 import bg from '@/assets/login/bg.png'
 import avatar from '@/assets/login/avatar.svg?component'
 import illustration from '@/assets/login/illustration.svg?component'
+import globalization from '@/assets/svg/globalization.svg?component'
 import { ref, reactive, toRaw } from 'vue'
 import { useRouter } from 'vue-router'
-import type { FormInstance } from 'element-plus'
-import { loginRules } from './rule'
+import type { FormInstance, FormRules } from 'element-plus'
+import { isPassWord } from '@/utils/validate'
 
 const router = useRouter()
 const ruleFormRef = ref<FormInstance>()
@@ -16,9 +17,23 @@ const ruleForm = reactive({
   password: 'admin123'
 })
 
+const validatePassword = (rule: any, value: any, callback: any) => {
+  if (value === '') {
+    callback(new Error(t('login.purePassWordReg')))
+  } else if (!isPassWord(value)) {
+    callback(new Error(t('login.purePassWordRuleReg')))
+  } else {
+    callback()
+  }
+}
+
+const loginRules = reactive<FormRules<typeof ruleForm>>({
+  password: [{ validator: validatePassword, trigger: 'blur' }]
+})
+
 const loading = ref(false)
-const title = ref('PureAdmin')
-// const { t } = useI18n()
+const title = ref('Admin')
+const { t, locale } = useI18n()
 
 const onLogin = async (formEl: FormInstance | undefined) => {
   loading.value = true
@@ -43,6 +58,11 @@ const onLogin = async (formEl: FormInstance | undefined) => {
     }
   })
 }
+
+const languageChange = (lang: string) => {
+  locale.value = lang
+  localStorage.setItem('lang', lang)
+}
 </script>
 <template>
   <div class="select-none">
@@ -51,35 +71,29 @@ const onLogin = async (formEl: FormInstance | undefined) => {
       <!-- 主题 -->
       <!-- <el-switch v-model="dataTheme" inline-prompt :active-icon="dayIcon" :inactive-icon="darkIcon" @change="dataThemeChange" /> -->
       <!-- 国际化 -->
-      <!-- <el-dropdown trigger="click">
-        <globalization class="hover:text-primary hover:!bg-[transparent] w-[20px] h-[20px] ml-1.5 cursor-pointer outline-none duration-300" />
+      <el-dropdown trigger="click">
+        <globalization class="hover:text-primary w-[20px] h-[20px] ml-1.5 cursor-pointer outline-none duration-300" />
         <template #dropdown>
           <el-dropdown-menu class="translation">
-            <el-dropdown-item :style="getDropdownItemStyle(locale, 'zh')" :class="['dark:!text-white', getDropdownItemClass(locale, 'zh')]" @click="translationCh">
-              <IconifyIconOffline v-show="locale === 'zh'" class="check-zh" :icon="Check" />
+            <el-dropdown-item @click="languageChange('zh')">
+              <el-icon v-show="locale === 'zh'" class="check-zh"><Check /></el-icon>
               简体中文
             </el-dropdown-item>
-            <el-dropdown-item :style="getDropdownItemStyle(locale, 'en')" :class="['dark:!text-white', getDropdownItemClass(locale, 'en')]" @click="translationEn">
-              <span v-show="locale === 'en'" class="check-en">
-                <IconifyIconOffline :icon="Check" />
-              </span>
+            <el-dropdown-item @click="languageChange('en')">
+              <el-icon v-show="locale === 'en'" class="check-en"><Check /></el-icon>
               English
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
-      </el-dropdown> -->
+      </el-dropdown>
     </div>
     <div class="login-container">
-      <!-- <div class="img">
-        <component :is="toRaw(illustration)" />
-      </div> -->
       <div class="img">
-        <img :src="illustration" />
+        <component :is="toRaw(illustration)" />
       </div>
       <div class="login-box">
         <div class="login-form">
-          <!-- <avatar class="avatar" /> -->
-          <img :src="avatar" class="avatar" />
+          <avatar class="avatar" />
           <!-- <Motion> -->
           <h2 class="outline-none">{{ title }}</h2>
           <!-- </Motion> -->
@@ -90,25 +104,25 @@ const onLogin = async (formEl: FormInstance | undefined) => {
               :rules="[
                 {
                   required: true,
+                  message: t('login.pureUsernameReg'),
                   trigger: 'blur'
                 }
               ]"
               prop="username"
             >
-              <el-input v-model="ruleForm.username" clearable />
+              <el-input v-model="ruleForm.username" clearable :placeholder="t('login.pureUsername')" />
             </el-form-item>
             <!-- </Motion> -->
 
             <Motion :delay="150">
               <el-form-item prop="password">
-                <el-input v-model="ruleForm.password" clearable show-password />
+                <el-input v-model="ruleForm.password" clearable show-password :placeholder="t('login.purePassword')" />
               </el-form-item>
             </Motion>
 
             <!-- <Motion :delay="250"> -->
             <el-button class="w-full mt-4" size="default" type="primary" :loading="loading" @click="onLogin(ruleFormRef)">
-              <!-- {{ t('login.pureLogin') }} -->
-              登录
+              {{ t('login.pureLogin') }}
             </el-button>
             <!-- </Motion> -->
           </el-form>

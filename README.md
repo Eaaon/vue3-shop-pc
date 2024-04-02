@@ -160,10 +160,15 @@ pnpm add element-plus
 pnpm add echarts
 pnpm add xlsx
 pnpm add jspdf
+pnpm add nprogress
+pnpm add vite-svg-loader -D
 
 pnpm add lodash-es
 pnpm add mitt
 pnpm add dayjs
+pnpm add js-cookie
+pnpm add vue-i18n
+pnpm add @intlify/unplugin-vue-i18n
 
 pnpm add sass -D
 pnpm add unocss -D

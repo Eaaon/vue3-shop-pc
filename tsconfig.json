@@ -21,9 +21,10 @@
     "noFallthroughCasesInSwitch": true,
 
     "baseUrl": ".",
-    "types": ["vite/client", "pinia-plugin-persistedstate"],
+    "types": ["vite/client", "pinia-plugin-persistedstate", "@intlify/vite-plugin-vue-i18n/client"],
     "paths": { "@/*": ["src/*"] }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", ".d.ts"],
+  "exclude": ["dist", "**/*.js", "node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

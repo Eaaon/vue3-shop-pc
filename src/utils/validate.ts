@@ -88,7 +88,8 @@ export function isBankCard(val: string) {
  * @description 8-25位大小写字母、数字或数字加字母的形式
  */
 export function isPassWord(val: string) {
-  const reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,25}$/
+  // const reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,25}$/
+  const reg = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)]|[()])+$)(?!^.*[\u4E00-\u9FA5].*$)([^(0-9a-zA-Z)]|[()]|[a-z]|[A-Z]|[0-9]){8,18}$/
   return reg.test(val)
 }
 
