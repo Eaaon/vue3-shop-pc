@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-import bg from '@/assets/login/bg.png'
-import avatar from '@/assets/login/avatar.svg?component'
-import illustration from '@/assets/login/illustration.svg?component'
-import globalization from '@/assets/svg/globalization.svg?component'
-import { ref, reactive, toRaw } from 'vue'
 import { useRouter } from 'vue-router'
+import { ref, reactive, toRaw } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { bg, avatar, illustration, globalization } from './static'
 import type { FormInstance, FormRules } from 'element-plus'
 import { isPassWord } from '@/utils/validate'
 
@@ -19,9 +16,9 @@ const ruleForm = reactive({
 
 const validatePassword = (rule: any, value: any, callback: any) => {
   if (value === '') {
-    callback(new Error(t('login.purePassWordReg')))
+    callback(new Error(t('login.passWordReg')))
   } else if (!isPassWord(value)) {
-    callback(new Error(t('login.purePassWordRuleReg')))
+    callback(new Error(t('login.passWordRuleReg')))
   } else {
     callback()
   }
@@ -88,14 +85,15 @@ const languageChange = (lang: string) => {
       </el-dropdown>
     </div>
     <div class="login-container">
-      <div class="img">
+      <div class="img hidden md:flex md:items-center md:justify-end">
         <component :is="toRaw(illustration)" />
       </div>
-      <div class="login-box">
+      <div class="login-box md:content-center">
         <div class="login-form">
           <avatar class="avatar" />
           <!-- <Motion> -->
           <h2 class="outline-none">{{ title }}</h2>
+
           <!-- </Motion> -->
 
           <el-form ref="ruleFormRef" :model="ruleForm" :rules="loginRules" size="large">
@@ -104,25 +102,25 @@ const languageChange = (lang: string) => {
               :rules="[
                 {
                   required: true,
-                  message: t('login.pureUsernameReg'),
+                  message: t('login.usernameReg'),
                   trigger: 'blur'
                 }
               ]"
               prop="username"
             >
-              <el-input v-model="ruleForm.username" clearable :placeholder="t('login.pureUsername')" />
+              <el-input v-model="ruleForm.username" clearable :placeholder="t('login.username')" />
             </el-form-item>
             <!-- </Motion> -->
 
             <Motion :delay="150">
               <el-form-item prop="password">
-                <el-input v-model="ruleForm.password" clearable show-password :placeholder="t('login.purePassword')" />
+                <el-input v-model="ruleForm.password" clearable show-password :placeholder="t('login.password')" />
               </el-form-item>
             </Motion>
 
             <!-- <Motion :delay="250"> -->
             <el-button class="w-full mt-4" size="default" type="primary" :loading="loading" @click="onLogin(ruleFormRef)">
-              {{ t('login.pureLogin') }}
+              {{ t('login.login') }}
             </el-button>
             <!-- </Motion> -->
           </el-form>

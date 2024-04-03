@@ -40,6 +40,16 @@ export default defineConfig({
     'transition-base': 'transition-all duration-300 ease-in-out'
   },
   theme: {
+    breakpoints: {
+      xxxs: '320px',
+      xxs: '480',
+      xs: '640px',
+      sm: '768px',
+      md: '968px',
+      lg: '1024px',
+      xl: '1280px',
+      xxl: '1536px'
+    },
     colors: {
       // ...
     }

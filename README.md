@@ -87,7 +87,20 @@ pnpm dev
   > 代码风格管理，更好的代码风格效果
 
 - **editorconfig**：文件代码规范
+
   > 保持多人开发一致编码样式
+
+- **UnoCSS** ：UnoCSS样式标识和样式提示
+
+```
+// 打开File -> Preferences => Settings => 搜索UnoCSS => Unocss:Root \ Edit in settings.json
+"unocss.root": "packages/client",
+"editor.quickSuggestions": {
+  "other": "on",
+  "comments": "on",
+  "strings": "on"
+}
+```
 
 ## 🔧 vscode工具
 
@@ -109,31 +122,41 @@ pnpm dev
 
 ### 3、生产环境 => .env.production
 
-```
-  // package.json
-  "scripts": {
-    "dev": "vite", //yarn dev 开发环境
-    "test": "vite --mode test", //yarn test 测试环境
-    "prod": "vite --mode production", //prod test 生产环境
-    "build": "vue-tsc && vite build", //yarn run build dev 生产环境构建产物
-    "build dev": "vite build --mode development", //yarn run build dev 开发环境构建产物
-    "build prod": "vite build --mode production", //yarn run build prod 生产环境构建产物
-    "preview": "vite preview" // 本地预览生产构建产物
-  },
+````
+
+// package.json
+"scripts": {
+"dev": "vite", //yarn dev 开发环境
+"test": "vite --mode test", //yarn test 测试环境
+"prod": "vite --mode production", //prod test 生产环境
+"build": "vue-tsc && vite build", //yarn run build dev 生产环境构建产物
+"build dev": "vite build --mode development", //yarn run build dev 开发环境构建产物
+"build prod": "vite build --mode production", //yarn run build prod 生产环境构建产物
+"preview": "vite preview" // 本地预览生产构建产物
+},
+
 ```
 
 ## 🎈 如需自己使用Vite创建项目
 
 ```
- # 使用 NPM:
- npm create vite@latest
- # 使用 Yarn::
- yarn create vite
- # 使用 PNPM:
- pnpm create vite
+
+# 使用 NPM:
+
+npm create vite@latest
+
+# 使用 Yarn::
+
+yarn create vite
+
+# 使用 PNPM:
+
+pnpm create vite
+
 ```
 
 ```
+
 √ Project name: ... vue3-shop-pc
 √ Select a framework: » Vue
 √ Select a variant: » TypeScript
@@ -141,14 +164,16 @@ Scaffolding project in E:\git\vue3-shop-pc...
 
 Done. Now run:
 
-  cd vue3-shop-pc
-  pnpm install
-  pnpm dev
+cd vue3-shop-pc
+pnpm install
+pnpm dev
+
 ```
 
 ## 🚀 其他安装
 
 ```
+
 pnpm add axios
 pnpm add mockjs
 
@@ -181,3 +206,5 @@ pnpm add vite-plugin-mock@2.9.6 -D
 ## ⭐ 作者
 
 如果觉得项目不错，或者有帮助到你，希望你可以去 Github 或者 Gitee 帮我点个 ⭐ Star，这将是对我极大的鼓励与支持。
+```
+````

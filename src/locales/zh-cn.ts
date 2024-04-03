@@ -1,38 +1,38 @@
 export default {
   buttons: {
-    pureLoginOut: '退出系统',
-    pureLogin: '登录',
-    pureSystemSet: '打开项目配置',
-    pureReload: '重新加载',
-    pureCloseCurrentTab: '关闭当前标签页',
-    pureCloseLeftTabs: '关闭左侧标签页',
-    pureCloseRightTabs: '关闭右侧标签页',
-    pureCloseOtherTabs: '关闭其他标签页',
-    pureCloseAllTabs: '关闭全部标签页',
-    pureContentFullScreen: '内容区全屏',
-    pureContentExitFullScreen: '内容区退出全屏'
+    loginOut: '退出系统',
+    login: '登录',
+    systemSet: '打开项目配置',
+    reload: '重新加载',
+    closeCurrentTab: '关闭当前标签页',
+    closeLeftTabs: '关闭左侧标签页',
+    closeRightTabs: '关闭右侧标签页',
+    closeOtherTabs: '关闭其他标签页',
+    closeAllTabs: '关闭全部标签页',
+    contentFullScreen: '内容区全屏',
+    contentExitFullScreen: '内容区退出全屏'
   },
   menus: {
-    pureHome: '首页',
-    pureLogin: '登录',
-    pureAbnormal: '异常页面',
-    pureFourZeroFour: '404',
-    pureFourZeroOne: '403',
-    pureFive: '500',
-    purePermission: '权限管理',
-    purePermissionPage: '页面权限',
-    purePermissionButton: '按钮权限'
+    home: '首页',
+    login: '登录',
+    abnormal: '异常页面',
+    fourZeroFour: '404',
+    fourZeroOne: '403',
+    five: '500',
+    permission: '权限管理',
+    permissionPage: '页面权限',
+    permissionButton: '按钮权限'
   },
   status: {
-    pureLoad: '加载中...'
+    loading: '加载中...'
   },
   login: {
-    pureUsername: '账号',
-    purePassword: '密码',
-    pureLogin: '登录',
-    pureUsernameReg: '请输入账号',
-    purePassWordReg: '请输入密码',
-    purePassWordRuleReg: '密码格式应为8-18位数字、字母、符号的任意两种组合'
+    username: '账号',
+    password: '密码',
+    login: '登录',
+    usernameReg: '请输入账号',
+    passWordReg: '请输入密码',
+    passWordRuleReg: '密码格式应为8-18位数字、字母、符号的任意两种组合'
   },
-  pureUsernameReg: '请输入账号'
+  usernameReg: '请输入账号'
 }

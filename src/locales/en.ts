@@ -1,38 +1,38 @@
 export default {
   buttons: {
-    pureLoginOut: 'LoginOut',
-    pureLogin: 'Login',
-    pureSystemSet: 'Open ProjectConfig',
-    pureReload: 'Reload',
-    pureCloseCurrentTab: 'Close CurrentTab',
-    pureCloseLeftTabs: 'Close LeftTabs',
-    pureCloseRightTabs: 'Close RightTabs',
-    pureCloseOtherTabs: 'Close OtherTabs',
-    pureCloseAllTabs: 'Close AllTabs',
-    pureContentFullScreen: 'Content FullScreen',
-    pureContentExitFullScreen: 'Content ExitFullScreen'
+    loginOut: 'LoginOut',
+    login: 'Login',
+    systemSet: 'Open ProjectConfig',
+    reload: 'Reload',
+    closeCurrentTab: 'Close CurrentTab',
+    closeLeftTabs: 'Close LeftTabs',
+    closeRightTabs: 'Close RightTabs',
+    closeOtherTabs: 'Close OtherTabs',
+    closeAllTabs: 'Close AllTabs',
+    contentFullScreen: 'Content FullScreen',
+    contentExitFullScreen: 'Content ExitFullScreen'
   },
   menus: {
-    pureHome: 'Home',
-    pureLogin: 'Login',
-    pureAbnormal: 'Abnormal Page',
-    pureFourZeroFour: '404',
-    pureFourZeroOne: '403',
-    pureFive: '500',
-    purePermission: 'Permission Manage',
-    purePermissionPage: 'Page Permission',
-    purePermissionButton: 'Button Permission'
+    home: 'Home',
+    login: 'Login',
+    abnormal: 'Abnormal Page',
+    fourZeroFour: '404',
+    fourZeroOne: '403',
+    five: '500',
+    permission: 'Permission Manage',
+    permissionPage: 'Page Permission',
+    permissionButton: 'Button Permission'
   },
   status: {
-    pureLoad: 'Loading...'
+    load: 'Loading...'
   },
   login: {
-    pureUsername: 'Username',
-    purePassword: 'Password',
-    pureLogin: 'Login',
-    pureUsernameReg: 'Please enter username',
-    purePassWordReg: 'Please enter password',
-    purePassWordRuleReg: 'The password format should be any combination of 8-18 digits'
+    username: 'Username',
+    password: 'Password',
+    login: 'Login',
+    usernameReg: 'Please enter username',
+    passWordReg: 'Please enter password',
+    passWordRuleReg: 'The password format should be any combination of 8-18 digits'
   },
-  pureUsername: 'Username'
+  username: 'Username'
 }

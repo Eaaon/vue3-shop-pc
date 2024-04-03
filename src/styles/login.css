@@ -17,11 +17,11 @@
   /* padding: 0 2rem; */
 }
 
-.img {
+/* .img {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
+} */
 
 .img img {
   width: 500px;
@@ -78,13 +78,13 @@
 }
 
 @media screen and (max-width: 968px) {
-  .wave {
+  /* .wave {
     display: none;
-  }
+  } */
 
-  .img {
+  /* .img {
     display: none;
-  }
+  } */
 
   .login-container {
     grid-template-columns: 1fr;
