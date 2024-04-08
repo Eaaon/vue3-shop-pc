@@ -1,4 +1,12 @@
-.keep-px-app{
+@import './dark';
+@import './sidebar';
+@import './element-plus';
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+.keep-px-app {
   // max-width: 480px;
   min-height: 100vh;
   background-color: #f5f5f5;
@@ -8,35 +16,55 @@
   width: 100%;
 }
 
-.w-375{
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.w-375 {
   width: 375px;
 }
 
-.red-price{
-  color: #F2270C;
+.red-price {
+  color: #f2270c;
 }
 
-.red-pay{
+.red-pay {
   color: #fa2c19;
 }
 
-.text-gray{
+.text-gray {
   color: #666;
 }
 
-.text-light-gray{
+.text-light-gray {
   color: #999;
 }
 
-.text-light-green{
+.text-light-green {
   color: #53c7ca;
 }
 
-.van-button{
+.van-button {
   height: 2.3rem;
 }
 
-.text-xxs{
+.text-xxs {
   font-size: 10px;
 }
 
+.z-basement {
+  z-index: -1;
+}
+
+.font-consolas {
+  font-family: Consolas;
+}
+
+// .dark:root {
+//   background-color: #000;
+// }
+
+// .light:root {
+//   background-color: #fff;
+// }

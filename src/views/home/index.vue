@@ -15,4 +15,4 @@ onMounted(() => {
 })
 </script>
 
-<template>home1</template>
+<template>home2</template>

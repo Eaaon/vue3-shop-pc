@@ -2,12 +2,14 @@
 import { useRouter } from 'vue-router'
 import { ref, reactive, toRaw } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { bg, avatar, illustration, globalization } from './static'
+import { bg, avatar, illustration, globalization, dayIcon, darkIcon } from './static'
 import type { FormInstance, FormRules } from 'element-plus'
 import { isPassWord } from '@/utils/validate'
+import { loginApi } from '@/api/login'
 
 const router = useRouter()
 const ruleFormRef = ref<FormInstance>()
+const dataTheme = ref('light')
 
 const ruleForm = reactive({
   username: 'admin',
@@ -37,18 +39,11 @@ const onLogin = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      router.push('/')
-      // useUserStoreHook()
-      //   .loginByUsername({ username: ruleForm.username, password: 'admin123' })
-      //   .then((res) => {
-      //     if (res.success) {
-      //       // 获取后端路由
-      // initRouter().then(() => {
-      //   router.push(getTopMenu(true).path)
-      //   message('登录成功', { type: 'success' })
-      // })
-      //     }
-      //   })
+      loginApi({ username: ruleForm.username, password: ruleForm.password }).then((res) => {
+        if (res.data) {
+          router.push('/')
+        }
+      })
     } else {
       loading.value = false
       return fields
@@ -60,13 +55,23 @@ const languageChange = (lang: string) => {
   locale.value = lang
   localStorage.setItem('lang', lang)
 }
+
+const dataThemeChange = (val: string) => {
+  if (val === 'dark') {
+    document.documentElement.classList.add('dark')
+    document.documentElement.classList.remove('light')
+  } else {
+    document.documentElement.classList.add('light')
+    document.documentElement.classList.remove('dark')
+  }
+}
 </script>
 <template>
-  <div class="select-none">
-    <img :src="bg" class="wave" />
-    <div class="flex-c absolute right-5 top-3">
+  <div class="overflow-hidden">
+    <img :src="bg" class="fixed left-0 bottom-0 w-4/5 h-full z-basement hidden md:block" />
+    <div class="absolute right-5 top-3 flex items-center">
       <!-- 主题 -->
-      <!-- <el-switch v-model="dataTheme" inline-prompt :active-icon="dayIcon" :inactive-icon="darkIcon" @change="dataThemeChange" /> -->
+      <el-switch v-model="dataTheme" active-value="dark" inactive-value="light" inline-prompt :active-icon="dayIcon" :inactive-icon="darkIcon" @change="dataThemeChange" />
       <!-- 国际化 -->
       <el-dropdown trigger="click">
         <globalization class="hover:text-primary w-[20px] h-[20px] ml-1.5 cursor-pointer outline-none duration-300" />
@@ -84,15 +89,15 @@ const languageChange = (lang: string) => {
         </template>
       </el-dropdown>
     </div>
-    <div class="login-container">
-      <div class="img hidden md:flex md:items-center md:justify-end">
+    <div class="flex w-screen h-screen">
+      <div class="hidden md:flex items-center justify-center flex-1">
         <component :is="toRaw(illustration)" />
       </div>
-      <div class="login-box md:content-center">
-        <div class="login-form">
-          <avatar class="avatar" />
+      <div class="flex items-center justify-center flex-1 text-center">
+        <div class="w-72 xl:w-90 text-center">
+          <avatar class="w-20 h-20" />
           <!-- <Motion> -->
-          <h2 class="outline-none">{{ title }}</h2>
+          <h2 class="text-2xl xs:text-4xl outline-none uppercase my-2 md:my-4 text-light-gray font-consolas">{{ title }}</h2>
 
           <!-- </Motion> -->
 
@@ -129,10 +134,6 @@ const languageChange = (lang: string) => {
     </div>
   </div>
 </template>
-
-<style scoped>
-@import url('@/styles/login.css');
-</style>
 
 <style lang="scss" scoped>
 :deep(.el-input-group__append, .el-input-group__prepend) {
